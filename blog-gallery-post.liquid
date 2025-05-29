@@ -1,0 +1,66 @@
+<section class="{{ section.id }}--padding container">
+    <div class="blog-title-container container">
+      <div class="">{{ section.settings.main-title }}</div>
+      <div>{{ section.settings.sub-text }}</div>
+      <span style="display: block; border-left: 2px solid #551c25;  height: 60px;  width: 2px;"
+        class="blog-title-divder-vertical"></span>
+      <div class="blog-button">{{ section.settings.button }}</div>
+    </div>
+    <div class="blog-route-container">
+      <div>Blog / Skincare / <b>Beauty</b> / {{ article.title }}</div>
+      <hr>
+    </div>
+
+    <div class="blog-gallery-container">
+      <div class="blog-gallery-img">
+        <div>{{ section.settings.title }}</div>
+        <div class="">Written by: {{ article.author }} | Published: {{ article.published_at | time_tag: format: 'date' }}</div>
+        <img class="" src="{{ section.settings.image | image_url}}">
+        <div>{{ section.settings['content-top'] }}</div>
+      </div>
+      <div class="blog-gallery-products container">
+        <div style="">{{ section.settings.products_title }}</div>
+        <div class="blog-products">
+          {% for block in section.blocks %}
+            {% case block.type %}
+              {% when 'products' %}
+                {% render 'product-block', product: block.settings.product %}
+            {% endcase %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <div class="blog-content-container">
+      {% for block in section.blocks %}
+        {% case block.type %}
+            {% when 'content' %}
+              <article>
+                <div class="text-center">{{ block.settings.title }}</div>
+                <div>{{ block.settings.content }}</div>
+              </article>
+            {% endcase %}
+      {% endfor %}
+    </div>
+    <div class="blog-links-container">
+      {% for block in section.blocks %}
+        {% case block.type %}
+            {% when 'links' %}
+              <article>
+                <div >{{ block.settings.title }}</div>
+                <div>{{ block.settings.links }}</div>
+              </article>
+            {% endcase %}
+      {% endfor %}
+    </div>
+   <div class="blog-gallery-products-mobile container">
+        <div style="">{{ section.settings.products_title }}</div>
+        <div class="blog-products">
+          {% for block in section.blocks %}
+            {% case block.type %}
+              {% when 'products' %}
+                {% render 'product-block', product: block.settings.product %}
+            {% endcase %}
+          {% endfor %}
+        </div>
+      </div>
+</section>
