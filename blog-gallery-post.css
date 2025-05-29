@@ -1,0 +1,113 @@
+  .blog-title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem var(--container-pad-x);
+    margin-bottom: 2rem;
+    background: #F3F1E9;
+  }
+
+  .blog-button:hover {
+    text-decoration: underline;
+  }
+
+  .blog-title-container p {
+    margin: 0;
+  }
+  
+  .blog-title-container h1 {
+    font-size: 45px;
+    line-height: 52px;
+    margin: 0;
+  }
+
+  .blog-gallery-container {
+    display: flex;
+  }
+
+  .blog-route-container {
+    width: 70%;
+    padding: 0 var(--container-pad-x) 0 0;
+  }
+
+  .blog-gallery-img {
+    width: 70%;
+    padding: 0 var(--container-pad-x) 0 0;
+  }
+
+  .blog-gallery-img img {
+    width: 100%;
+    height: auto;
+    margin: 2rem 0;
+  }
+
+  .blog-gallery-products {
+    width: 30%;
+    background: #F3F1E9;
+    padding:var(--container-pad-x);
+  }
+
+  .blog-gallery-products-mobile {
+    display: none;
+  }
+
+  .blog-products {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .blog-content-container {
+     padding: var(--container-pad-x) 0;
+  }
+
+  .blog-content-container article {
+    padding: 1.5rem 0;
+    border-top: 1px solid #551c25
+  }
+
+  .blog-links-container {
+     background: #F3F1E9;
+    padding: 2rem;
+  }
+
+  .blog-links-container a {
+    text-decoration: underline;
+  }
+
+  @media screen and (max-width: 767px) {
+    .blog-title-container {
+      flex-direction: column;
+      align-items: start;
+      gap: 0.55rem;
+      margin-bottom: 1rem;
+    }
+    .blog-title-container h1 {
+      font-size: 30px;
+      line-height: 35.5px;
+    }
+
+    .blog-title-divder-vertical {
+      display: none !important;
+    }
+    .blog-route-container {
+      display: none;
+    }
+
+    .blog-gallery-img {
+      width: 100%;
+      padding: 0;
+    }
+
+    .blog-gallery-img img  {
+      margin: 1rem 0;
+    }
+    .blog-gallery-products {
+      display: none;
+    }
+    .blog-gallery-products-mobile {
+      display: block;
+      background: #F3F1E9;
+      padding:var(--container-pad-x);
+    }
+  }
