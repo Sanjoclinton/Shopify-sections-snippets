@@ -1,0 +1,193 @@
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    --section-padding-top: {{ section.settings.padding_top }}px;
+    --section-padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+
+  .video-group__item video {
+    height: {{ section.settings.video_height}}px;
+    width: 100%;
+    object-fit: cover;
+  }
+  @media screen and (max-width: 768px){
+    .video-group__item {
+      min-width: {{ section.settings.min-width}}%;
+    }
+  }
+{%- endstyle -%}
+
+<div class="section--padding">
+  <div class="video-group-section{% unless section.settings.full_width %} page-width{% endunless %}">
+    <div class="title-wrapper center">
+      <h2 class="title h2">{{ section.settings.heading }}</h2>
+    </div>
+    <slider-component class="slider-mobile-gutter">
+      <ul
+        id="Slider-{{ section.id }}"
+        class="articles-wrapper grid grid--3-col slider slider--tablet"
+        role="list"
+      >
+        {%- for block in section.blocks -%}
+          <li
+            id="Slide-{{ section.id }}-{{ forloop.index }}"
+            class="grid__item video-group__item"
+          >
+            <h2 class="h2">{{ block.settings.title }}</h2>
+            <video
+              autoplay loop muted playsinline
+            >
+              <source src="{{ block.settings.video}}" type="video/mp4">
+            </video>
+            {% comment %}
+                {{
+                block.settings.video
+                | video_tag:
+                  autoplay: section.settings.autoplay,
+                  loop: section.settings.loop,
+                  muted: section.settings.muted,
+                  controls: section.settings.controls
+              }}
+            {% endcomment %}
+
+            <p>{{ block.settings.content }}</p>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </slider-component>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Video Group",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Video Group Section",
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default" : "Taking Your Herbs"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "default": false,
+      "label": "t:sections.all.full_width.label"
+    },
+    {
+      "type": "number",
+      "info": "px",
+      "id": "padding_top",
+      "label": "Padding Top",
+      "default": 25,
+    },
+    {
+      "type": "number",
+      "info": "px",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 25,
+    },
+    {
+      "type": "number",
+      "id": "min-width",
+      "label": "Mobile mininimum width (%)",
+      "default" : 90,
+    },
+    {
+      "type": "header",
+      "content": "Video settings",
+    },
+    {
+      "type": "number",
+      "id": "video_height",
+      "label": "Videos Height",
+      "default": 300,
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "autoplay",
+      "default": true,
+    },
+    {
+      "type": "checkbox",
+      "id": "loop",
+      "label": "loop",
+      "default": true,
+    },
+    {
+      "type": "checkbox",
+      "id": "muted",
+      "label": "muted",
+      "default": true,
+    },
+    {
+      "type": "checkbox",
+      "id": "controls",
+      "label": "controls",
+      "default": false,
+    },
+  ],
+  "blocks": [
+    {
+      "type": "Video",
+      "name": "Video",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Video title",
+          "default": "Title"
+        },
+        {
+          "type": "text",
+          "id": "video",
+          "label": "video url",
+          "default": "https://cdn.shopify.com/videos/c/o/v/d7b321c7b01643a88738a4b6f67ddf77.mp4"
+        },
+        {
+          "type": "text",
+          "id": "content",
+          "label": "Text",
+          "default": "Start with 1/4 Teaspoon of powdered mushroom"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video Group",
+      "blocks": [
+        {
+          "type": "Video",
+          "settings": {
+            "title": "1. Add To Coffee",
+            "video": "https://cdn.shopify.com/videos/c/o/v/d7b321c7b01643a88738a4b6f67ddf77.mp4",
+            "content": "Add powders to warm coffee and froth until completely mixed. Top off with milk of choice and froth again.",
+          }
+        },
+        {
+          "type": "Video",
+          "settings": {
+            "title": "2. Add To Water",
+            "video": "https://cdn.shopify.com/videos/c/o/v/cf2b3e0e82014c26ac0390ddcbc34194.mp4",
+            "content": "Add powders to water, blend well and add honey or maple for sweetness. Top off with fresh fruit for added flavor.",
+          }
+        },
+        {
+          "type": "Video",
+          "settings": {
+            "title": "3. Add To Food",
+            "video": "https://cdn.shopify.com/videos/c/o/v/d7b321c7b01643a88738a4b6f67ddf77.mp4",
+            "content": "Add powders to your favorite recipes. We find deserts work the best, but be sure to mix well to preserve flavor.",
+          }
+        },
+      ]
+    }
+  ]
+}
+{% endschema %}
