@@ -64,3 +64,134 @@
         </div>
       </div>
 </section>
+
+
+{% style %}
+  .{{section.id}}--padding {
+    padding-top: {{ section.settings.padding-top }}px;
+    padding-bottom: {{ section.settings.padding-bottom }}px;
+  }
+{% style %}
+
+
+{% schema %}
+{
+  "name": "Blog template",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Page title"
+    },
+    {
+      "type": "richtext",
+      "id": "main-title",
+      "label": "Large main title",
+    },
+    {
+      "type": "richtext",
+      "id": "sub-text",
+      "label": "Sub text",
+    },
+    {
+      "type": "richtext",
+      "id": "button",
+      "label": "Button label",
+    },
+    {
+      "type": "header",
+      "content": "Blog section"
+    },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Blog Title"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Blog Image"
+    },
+    {
+      "type": "richtext",
+      "id": "content-top",
+      "label": "Blog content header",
+    },
+    {
+      "type": "header",
+      "content": "Product sidebar title"
+    },
+    {
+      "type": "richtext",
+      "id": "products_title",
+      "label": "Title",
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "number",
+      "id": "padding-top",
+      "label": "Padding top",
+      "info": "px"
+    },
+    {
+      "type": "number",
+      "id": "padding-bottom",
+      "label": "Padding top",
+      "info": "px"
+    },
+  ],
+  "blocks": [
+    {
+      "type": "products",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Select product"
+        },
+      ]
+    },
+    {
+      "type": "content",
+      "name": "Content",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "title",
+          "label": "title"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content"
+        },
+      ]
+    },
+    {
+      "type": "links",
+      "name": "Links",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "title",
+          "label": "title"
+        },
+        {
+          "type": "richtext",
+          "id": "links",
+          "label": "Links"
+        },
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Blog template",
+    }
+  ]
+}
+{% endschema %}
+
