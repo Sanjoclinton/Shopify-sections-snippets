@@ -1,0 +1,132 @@
+<div class="container mobile__timeline">
+  <div class="timeline__container">
+    <h2 class="timeline__heading">{{ section.settings.timeline_heading }}</h2>
+    <div class="timeline__all-body">
+      {% for block in section.blocks %}
+        <div class="timeline__body {% if block.type == "timeline-item-left" %}left {% else %}right{% endif %}">
+          <article class="timeline__content">
+            <b
+              class="timeline-item__bold-text"
+              style="display: block;  {% if block.type == "timeline-item-left" %}text-align: right;{% endif %}"
+            >
+              {{- block.settings['timeline-item__bold-text'] -}}
+            </b>
+            <p>
+              {{ block.settings['timeline-item__main-text'] }}
+              <span
+                ><i>{{ block.settings['timeline-item__italic-text'] }}</i></span
+              >
+            </p>
+            <span class="container__arrow {% if block.type == "timeline-item-right" %}right__arrow{% endif %}"></span>
+          </article>
+          <div
+            class="timeline__image "
+            style="{% if block.settings.timeline-item__image2 != blank %}display: flex; gap: 10px;{% endif %}"
+          >
+            {% if block.settings['timeline-item__image'] != blank %}
+              <img
+                class="{% if block.settings.timeline-item__image2 != blank %}img-1-2{% endif %}"
+                src="{{ block.settings.timeline-item__image | image_url}}"
+              >
+              {% if block.settings['timeline-item__image2'] != blank %}
+                <img
+                  class="{% if block.settings.timeline-item__image2 != blank %}img-1-2{% endif %}"
+                  src="{{ block.settings.timeline-item__image2 | image_url}}"
+                >
+              {% endif %}
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Timelines ",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "timeline_heading",
+      "label": "Heading",
+      "default" : "Then & Now"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "timeline-item-left",
+      "name": "timeline item left",
+      "settings": [
+        {
+         "type": "text",
+          "id": "timeline-item__bold-text",
+          "label": "Date",
+          "default" : "2024"
+        },
+        {
+         "type": "text",
+          "id": "timeline-item__main-text",
+          "label": "Main",
+          "default" : "Sund and Moo"
+        },
+        {
+         "type": "text",
+          "id": "timeline-item__italic-text",
+          "label": "Italic",
+          "default" : "Launched"
+        },
+        {
+         "type": "image_picker",
+          "id": "timeline-item__image",
+          "label": "Image",
+        },
+        {
+         "type": "image_picker",
+          "id": "timeline-item__image2",
+          "label": "Image 2",
+        },
+
+      ]
+    },
+      {
+      "type": "timeline-item-right",
+      "name": "timeline item right",
+      "settings": [
+        {
+         "type": "text",
+          "id": "timeline-item__bold-text",
+          "label": "Date",
+          "default" : "2024"
+        },
+        {
+         "type": "text",
+          "id": "timeline-item__main-text",
+          "label": "Main",
+          "default" : "Sund and Moo"
+        },
+        {
+         "type": "text",
+          "id": "timeline-item__italic-text",
+          "label": "Italic",
+          "default" : "Launched"
+        },
+        {
+         "type": "image_picker",
+          "id": "timeline-item__image",
+          "label": "Image",
+        },
+
+      ]
+    },
+  ],
+  "presets": [
+    {
+      "name": "Timelines",
+    },
+
+  ]
+}
+{% endschema %}
